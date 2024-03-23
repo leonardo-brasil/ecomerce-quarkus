@@ -1,0 +1,74 @@
+@startuml diagrama
+
+class Usuario {
+    -nome : String
+    -email : String
+    -senha : String
+    -dataNascimento : Date
+    -cep : String
+    -endereco : String
+}
+
+class Compra {
+    -data : Double
+    -valorTotal : Double
+}
+
+class ItemPedido {
+    -precoDoItem : Double
+}
+
+class Produto {
+    -nome : String
+    -caminhoImagem : String
+    -precoDeCompra : Double
+    -precoDeVenda : Double
+    -quantidadeEstoque : Integer
+}
+
+class Categoria {
+    -nome : String
+    -descricao : String
+}
+
+class ObraReferencia {
+    -nome : String
+    -dataLancamento : Date
+    -autor : String
+
+}
+
+class Fornecedor {
+    -nome : String
+    -cep : String
+    -endereco : String
+    -cnpj : String
+}
+
+class Endereco {
+    -bairro : String
+    -rua : String
+    -numero : String
+}
+
+class Estado {
+    -nome : String
+    -sigla : String
+}
+
+class Cidade {
+    -nome : String
+}
+
+Usuario "1" --> "*" Compra
+Usuario "*" --> "1" Endereco
+Compra "1" --> "*" ItemPedido
+Fornecedor "*" --> "1" Endereco
+Endereco "*" --> "1" Cidade
+Cidade "*" --> "1" Estado
+ItemPedido "*" --> "1" Produto
+Produto "*" --> "1" ObraReferencia
+ObraReferencia "*" --> "*" Categoria
+
+
+@enduml
